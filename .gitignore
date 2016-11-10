@@ -44,5 +44,13 @@ brown.embedding
 web/api/*.rst
 
 # iPython notebooks
-
 .ipynb_checkpoints
+
+
+# local ignores
+.gitignore
+temp.arceager.model
+/MU_README.txt
+/MU_README.rst
+/MU_jenkins.sh
+
