@@ -2,7 +2,7 @@
 #
 # Author: Dan Garrette <dhgarrette@gmail.com>
 #
-# Copyright (C) 2001-2016 NLTK Project
+# Copyright (C) 2001-2017 NLTK Project
 # URL: <http://nltk.org/>
 # For license information, see LICENSE.TXT
 from __future__ import print_function, division, unicode_literals
@@ -10,9 +10,10 @@ from __future__ import print_function, division, unicode_literals
 import os
 from itertools import chain
 
+from six import string_types
+
 import nltk
 from nltk.internals import Counter
-from nltk.compat import string_types
 from nltk.tag import UnigramTagger, BigramTagger, TrigramTagger, RegexpTagger
 from nltk.sem.logic import (Expression, Variable, VariableExpression,
                             LambdaExpression, AbstractVariableExpression)

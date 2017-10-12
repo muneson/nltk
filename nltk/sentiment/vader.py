@@ -1,7 +1,7 @@
 # coding: utf-8
 # Natural Language Toolkit: vader
 #
-# Copyright (C) 2001-2016 NLTK Project
+# Copyright (C) 2001-2017 NLTK Project
 # Author: C.J. Hutto <Clayton.Hutto@gtri.gatech.edu>
 #         Ewan Klein <ewan@inf.ed.ac.uk> (modifications)
 #         Pierpaolo Pantone <24alsecondo@gmail.com> (modifications)
@@ -27,6 +27,7 @@ import re
 import string
 from itertools import product
 import nltk.data
+from .util import pairwise
 
 ##Constants##
 
@@ -41,19 +42,18 @@ C_INCR = 0.733
 N_SCALAR = -0.74
 
 # for removing punctuation
-REGEX_REMOVE_PUNCTUATION = re.compile('[%s]' % re.escape(string.punctuation))
+REGEX_REMOVE_PUNCTUATION = re.compile('[{0}]'.format(re.escape(string.punctuation)))
 
 PUNC_LIST = [".", "!", "?", ",", ";", ":", "-", "'", "\"",
              "!!", "!!!", "??", "???", "?!?", "!?!", "?!?!", "!?!?"]
-NEGATE = \
-["aint", "arent", "cannot", "cant", "couldnt", "darent", "didnt", "doesnt",
+NEGATE = {"aint", "arent", "cannot", "cant", "couldnt", "darent", "didnt", "doesnt",
  "ain't", "aren't", "can't", "couldn't", "daren't", "didn't", "doesn't",
  "dont", "hadnt", "hasnt", "havent", "isnt", "mightnt", "mustnt", "neither",
  "don't", "hadn't", "hasn't", "haven't", "isn't", "mightn't", "mustn't",
  "neednt", "needn't", "never", "none", "nope", "nor", "not", "nothing", "nowhere",
  "oughtnt", "shant", "shouldnt", "uhuh", "wasnt", "werent",
  "oughtn't", "shan't", "shouldn't", "uh-uh", "wasn't", "weren't",
- "without", "wont", "wouldnt", "won't", "wouldn't", "rarely", "seldom", "despite"]
+ "without", "wont", "wouldnt", "won't", "wouldn't", "rarely", "seldom", "despite"}
 
 # booster/dampener 'intensifiers' or 'degree adverbs'
 # http://en.wiktionary.org/wiki/Category:English_degree_adverbs
@@ -88,18 +88,14 @@ def negated(input_words, include_nt=True):
     """
     Determine if input contains negation words
     """
-    neg_words = []
-    neg_words.extend(NEGATE)
-    for word in neg_words:
-        if word in input_words:
-            return True
+    neg_words = NEGATE
+    if any(word.lower() in neg_words for word in input_words):
+        return True
     if include_nt:
-        for word in input_words:
-            if "n't" in word:
-                return True
-    if "least" in input_words:
-        i = input_words.index("least")
-        if i > 0 and input_words[i-1] != "at":
+        if any("n't" in word.lower() for word in input_words):
+            return True
+    for first, second in pairwise(input_words):
+        if second.lower() == "least" and first.lower() != 'at':
             return True
     return False
 

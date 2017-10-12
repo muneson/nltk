@@ -1,6 +1,6 @@
 # Natural Language Toolkit: Dependency Grammars
 #
-# Copyright (C) 2001-2016 NLTK Project
+# Copyright (C) 2001-2017 NLTK Project
 # Author: Jason Narad <jason.narad@gmail.com>
 #
 # URL: <http://nltk.org/>
@@ -10,12 +10,13 @@ from __future__ import print_function, unicode_literals
 
 from collections import defaultdict
 from itertools import chain
+from functools import total_ordering
 
 from nltk.grammar import (DependencyProduction, DependencyGrammar,
                           ProbabilisticDependencyGrammar)
 from nltk.parse.dependencygraph import DependencyGraph
 from nltk.internals import raise_unorderable_types
-from nltk.compat import total_ordering, python_2_unicode_compatible
+from nltk.compat import python_2_unicode_compatible
 
 #################################################################
 # Dependency Span

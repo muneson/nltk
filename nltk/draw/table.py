@@ -1,6 +1,6 @@
 # Natural Language Toolkit: Table widget
 #
-# Copyright (C) 2001-2016 NLTK Project
+# Copyright (C) 2001-2017 NLTK Project
 # Author: Edward Loper <edloper@gmail.com>
 # URL: <http://nltk.org/>
 # For license information, see LICENSE.TXT
@@ -11,10 +11,10 @@ Tkinter widgets for displaying multi-column listboxes and tables.
 
 from __future__ import division
 
-import nltk.compat
+
 import operator
 
-from tkinter import (Frame, Label, Listbox, Scrollbar, Tk)
+from six.moves.tkinter import (Frame, Label, Listbox, Scrollbar, Tk)
 
 
 ######################################################################

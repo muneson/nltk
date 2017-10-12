@@ -1,6 +1,6 @@
 # Natural Language Toolkit: Corpus Readers
 #
-# Copyright (C) 2001-2016 NLTK Project
+# Copyright (C) 2001-2017 NLTK Project
 # Author: Edward Loper <edloper@gmail.com>
 # URL: <http://nltk.org/>
 # For license information, see LICENSE.TXT
@@ -106,8 +106,10 @@ dependency_treebank = LazyCorpusLoader(
 floresta = LazyCorpusLoader(
     'floresta', BracketParseCorpusReader, r'(?!\.).*\.ptb', '#',
     tagset='unknown', encoding='ISO-8859-15')
-framenet = LazyCorpusLoader(
+framenet15 = LazyCorpusLoader(
     'framenet_v15', FramenetCorpusReader, ['frRelation.xml','frameIndex.xml','fulltextIndex.xml','luIndex.xml','semTypes.xml'])
+framenet = LazyCorpusLoader(
+    'framenet_v17', FramenetCorpusReader, ['frRelation.xml','frameIndex.xml','fulltextIndex.xml','luIndex.xml','semTypes.xml'])
 gazetteers = LazyCorpusLoader(
     'gazetteers', WordListCorpusReader, r'(?!LICENSE|\.).*\.txt',
     encoding='ISO-8859-2')
@@ -118,9 +120,6 @@ genesis = LazyCorpusLoader(
         ('.*', 'utf_8')])
 gutenberg = LazyCorpusLoader(
     'gutenberg', PlaintextCorpusReader, r'(?!\.).*\.txt', encoding='latin1')
-# corpus not available with NLTK; these lines caused help(nltk.corpus) to break
-#hebrew_treebank = LazyCorpusLoader(
-#    'hebrew_treebank', BracketParseCorpusReader, r'.*\.txt')
 ieer = LazyCorpusLoader(
     'ieer', IEERCorpusReader, r'(?!README|\.).*')
 inaugural = LazyCorpusLoader(
@@ -129,8 +128,7 @@ inaugural = LazyCorpusLoader(
 indian = LazyCorpusLoader(
     'indian', IndianCorpusReader, r'(?!\.).*\.pos',
     tagset='unknown', encoding='utf8')
-ipipan = LazyCorpusLoader(
-    'ipipan', IPIPANCorpusReader, r'(?!\.).*morph\.xml')
+
 jeita = LazyCorpusLoader(
     'jeita', ChasenCorpusReader, r'.*\.chasen', encoding='utf-8')
 knbc = LazyCorpusLoader(
@@ -154,18 +152,11 @@ multext_east = LazyCorpusLoader(
     'mte_teip5', MTECorpusReader, r'(oana).*\.xml', encoding="utf-8")
 names = LazyCorpusLoader(
     'names', WordListCorpusReader, r'(?!\.).*\.txt', encoding='ascii')
-nkjp = LazyCorpusLoader(
-    'nkjp', NKJPCorpusReader, r'', encoding='utf8')
 nps_chat = LazyCorpusLoader(
     'nps_chat', NPSChatCorpusReader, r'(?!README|\.).*\.xml', tagset='wsj')
 opinion_lexicon = LazyCorpusLoader(
     'opinion_lexicon', OpinionLexiconCorpusReader, r'(\w+)\-words\.txt',
     encoding='ISO-8859-2')
-panlex_lite = LazyCorpusLoader(
-    'panlex_lite', PanLexLiteCorpusReader)
-pl196x = LazyCorpusLoader(
-    'pl196x', Pl196xCorpusReader, r'[a-z]-.*\.xml',
-    cat_file='cats.txt', textid_file='textids.txt', encoding='utf8')
 ppattach = LazyCorpusLoader(
     'ppattach', PPAttachmentCorpusReader, ['training', 'test', 'devset'])
 product_reviews_1 = LazyCorpusLoader(
@@ -250,8 +241,7 @@ wordnet_ic = LazyCorpusLoader(
     'wordnet_ic', WordNetICCorpusReader, '.*\.dat')
 words = LazyCorpusLoader(
     'words', WordListCorpusReader, r'(?!README|\.).*', encoding='ascii')
-ycoe = LazyCorpusLoader(
-    'ycoe', YCOECorpusReader)
+
 # defined after treebank
 propbank = LazyCorpusLoader(
     'propbank', PropbankCorpusReader,
@@ -279,9 +269,34 @@ semcor = LazyCorpusLoader(
 
 nonbreaking_prefixes = LazyCorpusLoader(
     'nonbreaking_prefixes', NonbreakingPrefixesCorpusReader, r'(?!README|\.).*', encoding='utf8')
-
 perluniprops = LazyCorpusLoader(
     'perluniprops', UnicharsCorpusReader, r'(?!README|\.).*', nltk_data_subdir='misc', encoding='utf8')
+
+# mwa_ppdb = LazyCorpusLoader(
+#     'mwa_ppdb', MWAPPDBCorpusReader, r'(?!README|\.).*', nltk_data_subdir='misc', encoding='utf8')
+
+# See https://github.com/nltk/nltk/issues/1579
+# and https://github.com/nltk/nltk/issues/1716
+#
+# pl196x = LazyCorpusLoader(
+#     'pl196x', Pl196xCorpusReader, r'[a-z]-.*\.xml',
+#     cat_file='cats.txt', textid_file='textids.txt', encoding='utf8')
+#
+# ipipan = LazyCorpusLoader(
+#     'ipipan', IPIPANCorpusReader, r'(?!\.).*morph\.xml')
+#
+# nkjp = LazyCorpusLoader(
+#     'nkjp', NKJPCorpusReader, r'', encoding='utf8')
+#
+#panlex_lite = LazyCorpusLoader(
+#    'panlex_lite', PanLexLiteCorpusReader)
+#
+# ycoe = LazyCorpusLoader(
+#     'ycoe', YCOECorpusReader)
+#
+# corpus not available with NLTK; these lines caused help(nltk.corpus) to break
+#hebrew_treebank = LazyCorpusLoader(
+#    'hebrew_treebank', BracketParseCorpusReader, r'.*\.txt')
 
 
 def demo():

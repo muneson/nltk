@@ -1,6 +1,6 @@
 # Natural Language Toolkit: Parsers
 #
-# Copyright (C) 2001-2016 NLTK Project
+# Copyright (C) 2001-2017 NLTK Project
 # Author: Steven Bird <stevenbird1@gmail.com>
 #         Edward Loper <edloper@gmail.com>
 # URL: <http://nltk.org/>
@@ -78,3 +78,4 @@ from nltk.parse.malt import MaltParser
 from nltk.parse.evaluate import DependencyEvaluator
 from nltk.parse.transitionparser import TransitionParser
 from nltk.parse.bllip import BllipParser
+from nltk.parse.corenlp import CoreNLPParser, CoreNLPDependencyParser

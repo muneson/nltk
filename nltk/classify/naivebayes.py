@@ -1,6 +1,6 @@
 # Natural Language Toolkit: Naive Bayes Classifiers
 #
-# Copyright (C) 2001-2016 NLTK Project
+# Copyright (C) 2001-2017 NLTK Project
 # Author: Edward Loper <edloper@gmail.com>
 # URL: <http://nltk.org/>
 # For license information, see LICENSE.TXT
@@ -21,7 +21,7 @@ independent, given the label:
 |  P(label|features) = --------------------------------------------
 |                                         P(features)
 
-Rather than computing P(featues) explicitly, the algorithm just
+Rather than computing P(features) explicitly, the algorithm just
 calculates the numerator for each label, and normalizes them so they
 sum to one:
 

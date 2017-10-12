@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Natural Language Toolkit: Taggers
 #
-# Copyright (C) 2001-2016 NLTK Project
+# Copyright (C) 2001-2017 NLTK Project
 # Author: Edward Loper <edloper@gmail.com>
 #         Steven Bird <stevenbird1@gmail.com> (minor additions)
 # URL: <http://nltk.org/>
@@ -19,12 +19,19 @@ the word ``'fly'`` with a noun part of speech tag (``'NN'``):
 
     >>> tagged_tok = ('fly', 'NN')
 
-An off-the-shelf tagger is available.  It uses the Penn Treebank tagset:
+An off-the-shelf tagger is available for English. It uses the Penn Treebank tagset:
 
     >>> from nltk import pos_tag, word_tokenize
     >>> pos_tag(word_tokenize("John's big idea isn't all that bad."))
     [('John', 'NNP'), ("'s", 'POS'), ('big', 'JJ'), ('idea', 'NN'), ('is', 'VBZ'),
     ("n't", 'RB'), ('all', 'PDT'), ('that', 'DT'), ('bad', 'JJ'), ('.', '.')]
+
+A Russian tagger is also available if you specify lang="rus". It uses 
+the Russian National Corpus tagset:
+
+    >>> pos_tag(word_tokenize("Илья оторопел и дважды перечитал бумажку."), lang='rus')    # doctest: +SKIP
+    [('Илья', 'S'), ('оторопел', 'V'), ('и', 'CONJ'), ('дважды', 'ADV'), ('перечитал', 'V'),
+    ('бумажку', 'S'), ('.', 'NONLEX')]
 
 This package defines several taggers, which take a list of tokens,
 assign a tag to each one, and return the resulting list of tagged tokens.
@@ -86,8 +93,6 @@ def _get_tagger(lang=None):
         tagger = PerceptronTagger(False)
         ap_russian_model_loc = 'file:' + str(find(RUS_PICKLE))
         tagger.load(ap_russian_model_loc)
-    elif lang == 'eng':
-        tagger = PerceptronTagger()
     else:
         tagger = PerceptronTagger()
     return tagger
