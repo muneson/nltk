@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Natural Language Toolkit: IBM Model Core
 #
-# Copyright (C) 2001-2016 NLTK Project
+# Copyright (C) 2001-2017 NLTK Project
 # Author: Tah Wei Hoon <hoon.tw@gmail.com>
 # URL: <http://nltk.org/>
 # For license information, see LICENSE.TXT
@@ -495,6 +495,9 @@ class AlignmentInfo(object):
 
     def __eq__(self, other):
         return self.alignment == other.alignment
+
+    def __ne__(self, other):
+        return not self == other
 
     def __hash__(self):
         return hash(self.alignment)

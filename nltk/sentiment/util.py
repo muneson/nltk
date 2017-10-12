@@ -2,7 +2,7 @@
 #
 # Natural Language Toolkit: Sentiment Analyzer
 #
-# Copyright (C) 2001-2016 NLTK Project
+# Copyright (C) 2001-2017 NLTK Project
 # Author: Pierpaolo Pantone <24alsecondo@gmail.com>
 # URL: <http://nltk.org/>
 # For license information, see LICENSE.TXT
@@ -10,8 +10,8 @@
 """
 Utility methods for Sentiment Analysis.
 """
+from __future__ import division
 
-from copy import deepcopy
 import codecs
 import csv
 import json
@@ -20,6 +20,8 @@ import random
 import re
 import sys
 import time
+from copy import deepcopy
+from itertools import tee
 
 import nltk
 from nltk.corpus import CategorizedPlaintextCorpusReader
@@ -63,6 +65,7 @@ SAD = set([
     ':c', ':{', '>:\\', ';('
     ])
 
+
 def timer(method):
     """
     A timer decorator to measure execution performance of methods.
@@ -72,8 +75,8 @@ def timer(method):
         result = method(*args, **kw)
         end = time.time()
         tot_time = end - start
-        hours = int(tot_time / 3600)
-        mins = int((tot_time / 60) % 60)
+        hours = tot_time // 3600
+        mins = tot_time // 60 % 60
         # in Python 2.x round() will return a float, so we convert it to int
         secs = int(round(tot_time % 60))
         if hours == 0 and mins == 0 and secs < 10:
@@ -82,6 +85,13 @@ def timer(method):
             print('[TIMER] {0}(): {1}h {2}m {3}s'.format(method.__name__, hours, mins, secs))
         return result
     return timed
+
+
+def pairwise(iterable):
+    """s -> (s0,s1), (s1,s2), (s2, s3), ..."""
+    a, b = tee(iterable)
+    next(b, None)
+    return zip(a, b)
 
 #////////////////////////////////////////////////////////////
 #{ Feature extractor functions

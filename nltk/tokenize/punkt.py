@@ -1,6 +1,6 @@
 # Natural Language Toolkit: Punkt sentence tokenizer
 #
-# Copyright (C) 2001-2016 NLTK Project
+# Copyright (C) 2001-2017 NLTK Project
 # Algorithm: Kiss & Strunk (2006)
 # Author: Willy <willy@csse.unimelb.edu.au> (original Python port)
 #         Steven Bird <stevenbird1@gmail.com> (additions)
@@ -109,7 +109,9 @@ import re
 import math
 from collections import defaultdict
 
-from nltk.compat import unicode_repr, python_2_unicode_compatible, string_types
+from six import string_types
+
+from nltk.compat import unicode_repr, python_2_unicode_compatible
 from nltk.probability import FreqDist
 from nltk.tokenize.api import TokenizerI
 
@@ -519,7 +521,9 @@ class PunktBaseClass(object):
     """
 
     def __init__(self, lang_vars=PunktLanguageVars(), token_cls=PunktToken,
-            params=PunktParameters()):
+            params=None):
+        if params is None:
+            params = PunktParameters() 
         self._params = params
         self._lang_vars = lang_vars
         self._Token = token_cls
@@ -1058,16 +1062,12 @@ class PunktTrainer(PunktBaseClass):
         unlike the previous log_l function where it used modified
         Dunning log-likelihood values
         """
-        import math
-
         p = count_b / N
         p1 = count_ab / count_a
         try:
             p2 = (count_b - count_ab) / (N - count_a)
         except ZeroDivisionError as e:
             p2 = 1
-
-        print (p, p1, p2, N, count_a, count_b, count_ab)
 
         try:
             summand1 = (count_ab * math.log(p) +
@@ -1296,7 +1296,8 @@ class PunktSentenceTokenizer(PunktBaseClass,TokenizerI):
                 else:
                     # next sentence starts at following punctuation
                     last_break = match.end()
-        yield slice(last_break, len(text))
+        # The last sentence should not contain trailing whitespace.
+        yield slice(last_break, len(text.rstrip()))
 
     def _realign_boundaries(self, text, slices):
         """
@@ -1608,5 +1609,3 @@ def demo(text, tok_cls=PunktSentenceTokenizer, train_cls=PunktTrainer):
     sbd = tok_cls(trainer.get_params())
     for l in sbd.sentences_from_text(text):
         print(cleanup(l))
-
-

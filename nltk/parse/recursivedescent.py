@@ -1,6 +1,6 @@
 # Natural Language Toolkit: Recursive Descent Parser
 #
-# Copyright (C) 2001-2016 NLTK Project
+# Copyright (C) 2001-2017 NLTK Project
 # Author: Edward Loper <edloper@gmail.com>
 #         Steven Bird <stevenbird1@gmail.com>
 # URL: <http://nltk.org/>
@@ -351,8 +351,7 @@ class SteppingRecursiveDescentParser(RecursiveDescentParser):
     :see: ``nltk.grammar``
     """
     def __init__(self, grammar, trace=0):
-        self._grammar = grammar
-        self._trace = trace
+        super(SteppingRecursiveDescentParser, self).__init__(grammar, trace)
         self._rtext = None
         self._tree = None
         self._frontier = [()]

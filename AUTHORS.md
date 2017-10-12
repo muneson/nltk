@@ -9,6 +9,7 @@
 
 ## Contributors
 
+- Hyuckin David Lim
 - Rami Al-Rfou'
 - Mark Amery
 - Greg Aumann
@@ -54,6 +55,7 @@
 - Pablo Duboue
 - Long Duong
 - Christian Federmann
+- Campion Fellin
 - Michelle Fullwood
 - Dan Garrette
 - Jean Mark Gawron
@@ -97,6 +99,7 @@
 - Pierre-François Laquerre
 - Stefano Lattarini
 - Haejoong Lee
+- Jackson Lee
 - Max Leonov
 - Chris Liechti
 - Tom Lippincott
@@ -135,6 +138,7 @@
 - Alberto Planas
 - Ondrej Platek
 - Alessandro Presta
+- Qi Liu
 - Martin Thorsen Ranang
 - Michael Recachinas
 - Brandon Rhodes
@@ -202,7 +206,22 @@
 - George Berry
 - Adam Nelson
 - J Richard Snape
+- Alex Constantin <alex@keyworder.ch>
 - Tsolak Ghukasyan
+- Prasasto Adi
+- Safwan Kamarrudin
+- Arthur Tilley
+- Vilhjalmur Thorsteinsson
+- Jaehoon Hwang <https://github.com/jaehoonhwang>
+- Chintan Shah <https://github.com/chintanshah24>
+- sbagan
+- Zicheng Xu
+- Albert Au Yeung <https://github.com/albertauyeung>
+- Shenjian Zhao 
+- Deng Wang <https://github.com/lmatt-bit>
+- Ali Abdullah
+- Stoytcho Stoytchev
+- Lakhdar Benzahia
 
 ## Others whose work we've taken and included in NLTK, but who didn't directly contribute it:
 ### Contributors to the Porter Stemmer
@@ -211,3 +230,12 @@
 - Barry Wilkins
 - Hiranmay Ghosh
 - Chris Emerson
+
+### Contributors to Lancaster Stemmer
+- Matt Chaput, [Whoosh](https://bitbucket.org/mchaput/whoosh/wiki/Home)
+    - Strip prefix
+    - Custom rule.
+### Authors of snowball arabic stemmer algorithm
+- Assem Chelli
+- Abdelkrim Aries
+- Lakhdar Benzahia
